@@ -24,6 +24,11 @@ class TasksController < ApplicationController
   end
 
   def update
+    if @task.update(task_params)
+      redirect_to @task, notice: 'タスクを更新しました'
+    else
+      render :new
+    end
   end
 
   def destroy
