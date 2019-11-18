@@ -14,3 +14,14 @@ priority:integer
 dead_line:datetime
 user:references
 ```
+
+#Labellings table
+```
+task:references
+label:references
+```
+
+#labels table
+```
+name:string
+```
