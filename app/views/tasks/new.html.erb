@@ -1,22 +1,3 @@
 <h2>タスク新規作成</h2>
 
-<% if @task.errors.any? %>
-  <p><%= @task.errors.count %>件のエラーがあります</p>
-  <% @task.errors.full_messages.each do |msg| %>
-    <p><%= msg %></p>
-  <% end %>
-<% end %>
-
-<%= form_with(model: @task, local: true) do |f| %>
-  <table>
-    <tr>
-      <th><%= f.label :name %></th>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :description %></th>
-      <td><%= f.text_area :description %></td>
-    </tr>
-  </table>
-  <%= f.submit %>
-<% end %>
+<%= render 'form' %>
