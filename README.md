@@ -1,27 +1,30 @@
-#Users table
-```
-name:string
-email:string
-password_digest:string
-```
+**User**
 
-#Tasks table
-```
-name:string
-description:text
-status:integer
-priority:integer
-dead_line:datetime
-user:references
-```
+|column|type|
+|:---|:---|
+|name|string|
+|email|string|
+|password_digest|string|
 
-#Labellings table
-```
-task:references
-label:references
-```
+**Task**
 
-#labels table
-```
-name:string
-```
+|column|type|
+|:---|:---|
+|name |string|
+|description|text|
+|status|integer|
+|priority|integer|
+|dead_line|datetime|
+
+**Labelling**
+
+|column|type|
+|:---|:---|
+|task|references|
+|label|references|
+
+**Label**
+
+|column|type|
+|:---|:---|
+|name|string|
