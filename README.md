@@ -36,7 +36,7 @@
 |description|text|
 |status|integer|
 |priority|integer|
-|dead_line|datetime|
+|dead_line|date|
 
 **Labelling**
 
