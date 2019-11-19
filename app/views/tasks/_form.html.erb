@@ -15,6 +15,15 @@
       <th><%= f.label :description %></th>
       <td><%= f.text_area :description %></td>
     </tr>
+    <tr>
+      <th><%= f.label :deadline %></th>
+      <td><%= f.date_select(
+                            :deadline,
+                            use_month_number: true,
+                            start_year: Time.now.year,
+                            end_year: Time.now.year + 10)
+      %></td>  
+    </tr>
   </table>
   <%= f.submit '登録する' %>
 <% end %>
