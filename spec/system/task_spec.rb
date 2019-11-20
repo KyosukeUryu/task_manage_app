@@ -29,6 +29,7 @@ RSpec.describe Task, type: :system do
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'hoge'
         click_on '終了期限でソートする'
+        sleep 1
         new_task_list = all('.task_row')
         expect(new_task_list[0]).to have_content 'test_name'
       end
@@ -41,9 +42,13 @@ RSpec.describe Task, type: :system do
         visit new_task_path
         fill_in 'タスク名', with: 'hoge'
         fill_in 'タスク詳細', with: 'fuga'
+        select '2021', from: "task_deadline_1i"
+        select '7月', from: "task_deadline_2i"
+        select '13', from: "task_deadline_3i"
         click_on '登録する'
         expect(page).to have_content 'hoge'
         expect(page).to have_content 'fuga'
+        expect(page).to have_content '2021-07-13'
       end
     end
   end
