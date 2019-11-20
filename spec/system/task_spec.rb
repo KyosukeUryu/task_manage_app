@@ -22,6 +22,17 @@ RSpec.describe Task, type: :system do
         expect(task_list[1]).to have_content 'test_name'
       end
     end
+
+    context '「終了期限でソートする」ボタンを押した場合' do
+      it 'タスクが終了期限の降順に並び替えられる' do
+        visit tasks_path
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content 'hoge'
+        click_on '終了期限でソートする'
+        new_task_list = all('.task_row')
+        expect(new_task_list[0]).to have_content 'test_name'
+      end
+    end
   end
 
   describe 'タスク登録画面' do
