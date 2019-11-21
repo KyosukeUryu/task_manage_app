@@ -1,10 +1,18 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   def index
-    if params[:sort_expired]
+    if params[:sort_expired].present?
       @tasks = Task.order(deadline: :desc)
-    else
+    elsif params[:task].blank?
       @tasks = Task.order(created_at: :desc)
+    else
+      if params[:task][:name].present? && params[:task][:status].present?
+        @tasks = Task.where('name LIKE ? AND status = ?', "%#{params[:task][:name]}%", params[:task][:status] )
+      elsif params[:task][:name].present?
+        @tasks = Task.where('name LIKE ?', "%#{params[:task][:name]}%")
+      else
+        @tasks = Task.where('status = ?', params[:task][:status])
+      end
     end
   end
 
@@ -49,4 +57,13 @@ class TasksController < ApplicationController
   def set_task
     @task = Task.find(params[:id])
   end
+
+  # def integer_string?(str)
+  #   Integer(str)
+  #   true
+  # rescue ArgumentError
+  #   false
+  # end
+
+
 end
