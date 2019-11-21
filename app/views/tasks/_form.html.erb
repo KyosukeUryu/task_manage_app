@@ -31,6 +31,11 @@
       <td><%= f.select :status, Task.statuses.keys,
         selected: Task.statuses[@task.status] %></td>
     </tr>
+    <tr>
+      <th><%= f.label :priority %></th>
+      <td><%= f.select :priority, Task.priorities.keys,
+        selected: Task.priorities[@task.priority] %></td>
+    </tr>
   </table>
   <%= f.submit '登録する' %>
 <% end %>
