@@ -5,18 +5,17 @@ RSpec.describe Task, type: :system do
     before do
       FactoryBot.create(:task)
       FactoryBot.create(:second_task)
+      visit tasks_path
     end
 
     context 'タスクを作成した場合' do
       it '作成済みのタスクが表示されること' do
-        visit tasks_path
         expect(page).to have_content 'test_name'
       end
     end
 
     context '複数のタスクを作成した場合' do
       it 'タスクが作成日付の降順に並んでいること' do
-        visit tasks_path
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'hoge'
         expect(task_list[1]).to have_content 'test_name'
@@ -25,13 +24,25 @@ RSpec.describe Task, type: :system do
 
     context '「終了期限でソートする」ボタンを押した場合' do
       it 'タスクが終了期限の降順に並び替えられる' do
-        visit tasks_path
         task_list = all('.task_row')
         expect(task_list[0]).to have_content 'hoge'
         click_on '終了期限でソートする'
         sleep 1
         new_task_list = all('.task_row')
         expect(new_task_list[0]).to have_content 'test_name'
+      end
+    end
+
+    context 'ソートに条件を入力した場合' do
+      it 'ソートに合わせて表示を変更する' do
+        fill_in 'name_search', with: 'test_name'
+        click_on '検索する'
+        expect(page).to have_content 'test_name'
+        expect(page).not_to have_content 'hoge'
+        fill_in 'name_search', with: 'hoge'
+        select '未着手', from: '状態検索'
+        click_on '検索する'
+        expect(page).to have_content 'hoge'
       end
     end
   end
@@ -45,6 +56,7 @@ RSpec.describe Task, type: :system do
         select '2021', from: "task_deadline_1i"
         select '7月', from: "task_deadline_2i"
         select '13', from: "task_deadline_3i"
+        select '着手中', from: "task_status"
         click_on '登録する'
         expect(page).to have_content 'hoge'
         expect(page).to have_content 'fuga'

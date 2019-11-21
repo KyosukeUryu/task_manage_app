@@ -27,7 +27,7 @@
       %></td>
     </tr>
     <tr>
-      <th><%= f.label :status %></th>
+      <th><%= f.label :status, id: 'task_status' %></th>
       <td><%= f.select :status, Task.statuses.keys,
         selected: Task.statuses[@task.status] %></td>
     </tr>

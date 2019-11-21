@@ -2,14 +2,11 @@
 <%= link_to '終了期限でソートする', tasks_path(sort_expired: "true") %>
 <%= form_with(model: Task.new, local: true, method: :get, url: tasks_path) do |f| %>
   <%= f.label :name_search, '名前検索' %>
-  <%= f.text_field :name, class: 'form-control' %>
+  <%= f.text_field :name, class: 'form-control', id: 'name_search' %>
 
-  <%= f.label :status_search, '状態検索' %>
+  <%= f.label :status, '状態検索', id: 'search_status' %>
   <%= f.select :status, Task.statuses , class: 'form-control', include_blank: true, selected: '' %>
-
-  <%= f.hidden_field :search, value: true %>
-
-  <%= f.submit %><%= link_to '元に戻す', tasks_path %>
+  <%= f.submit '検索する' %><%= link_to '元に戻す', tasks_path %>
 <% end %>
 
 <table>
