@@ -21,7 +21,6 @@ class TasksController < ApplicationController
       @tasks = Task.name_search(params[:task][:name])
       @tasks = @tasks.status_search(params[:task][:status]) if params[:task][:status].present?
       @tasks = @tasks.priority_search(params[:task][:priority]) if params[:task][:priority].present?
-      
     end
 
   end

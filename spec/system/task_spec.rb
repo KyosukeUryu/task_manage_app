@@ -43,6 +43,9 @@ RSpec.describe Task, type: :system do
         select '未着手', from: '状態検索'
         click_on '検索する'
         expect(page).to have_content 'hoge'
+        select '中', from: '優先度検索'
+        click_on '検索する'
+        expect(page).to have_content 'test_name'
       end
     end
   end
@@ -57,6 +60,7 @@ RSpec.describe Task, type: :system do
         select '7月', from: "task_deadline_2i"
         select '13', from: "task_deadline_3i"
         select '着手中', from: "task_status"
+        select '中', from: "優先順位"
         click_on '登録する'
         expect(page).to have_content 'hoge'
         expect(page).to have_content 'fuga'
