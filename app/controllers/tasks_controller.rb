@@ -15,12 +15,12 @@ class TasksController < ApplicationController
     #   end
     # end
 
-    @tasks = Task.standard
-    @tasks = Task.sorting if params[:sort_expired]
+    @tasks = Task.standard.page(params[:page]).per(10)
+    @tasks = Task.sorting.page(params[:page]).per(10) if params[:sort_expired]
     if params[:task]
-      @tasks = Task.name_search(params[:task][:name])
-      @tasks = @tasks.status_search(params[:task][:status]) if params[:task][:status].present?
-      @tasks = @tasks.priority_search(params[:task][:priority]) if params[:task][:priority].present?
+      @tasks = Task.name_search(params[:task][:name]).page(params[:page]).per(10)
+      @tasks = @tasks.status_search(params[:task][:status]).page(params[:page]).per(10) if params[:task][:status].present?
+      @tasks = @tasks.priority_search(params[:task][:priority]).page(params[:page]).per(10) if params[:task][:priority].present?
     end
 
   end
@@ -67,6 +67,9 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def paginate
+    page(params[:page]).per(10)
+  end
   # def integer_string?(str)
   #   Integer(str)
   #   true
