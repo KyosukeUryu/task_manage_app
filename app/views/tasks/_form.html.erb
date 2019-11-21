@@ -6,7 +6,7 @@
 <% end %>
 
 <%= form_with(model: @task, local: true) do |f| %>
-  <table>
+  <table class="table new_table">
     <tr>
       <th><%= f.label :name %></th>
       <td><%= f.text_field :name %></td>
@@ -37,7 +37,7 @@
         selected: Task.priorities[@task.priority] %></td>
     </tr>
   </table>
-  <%= f.submit '登録する' %>
+  <%= f.submit '登録する', class: 'new_task_submit' %>
 <% end %>
 
-<%= link_to '一覧に戻る', tasks_path %>
+<%= link_to '一覧に戻る', tasks_path, class: 'btn btn-info' %>
