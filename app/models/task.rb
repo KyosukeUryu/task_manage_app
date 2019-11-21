@@ -9,4 +9,6 @@ class Task < ApplicationRecord
   scope :priority_search, -> (priority){where('priority = ?', priority)}
   scope :sorting, -> {order(deadline: :desc)}
   scope :standard, -> {order(created_at: :desc)}
+
+
 end

@@ -67,9 +67,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
-  def paginate
-    page(params[:page]).per(10)
-  end
   # def integer_string?(str)
   #   Integer(str)
   #   true

@@ -1,0 +1,34 @@
+body {
+  text-align: center;
+  background-image: image-url("task_back.jpg")
+}
+
+.task_table {
+  width: 50%;
+  margin: 20px auto;
+}
+
+.btn {
+  margin: 20px;
+}
+
+#name_search {
+  width: 30%;
+  margin: 0 auto;
+}
+
+form {
+  border-bottom: dashed 3px orange;
+}
+
+td, th, a {
+  font-size: 1.875rem;
+}
+
+table {
+  background-color: antiquewhite;
+}
+
+tr {
+  border-color: blue;
+}
