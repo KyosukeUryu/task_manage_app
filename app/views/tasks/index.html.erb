@@ -5,7 +5,7 @@
   <%= f.text_field :name, class: 'form-control' %>
 
   <%= f.label :status_search, '状態検索' %>
-  <%= f.select :status, Task.statuses.keys.map {|k| [k, k]}, class: 'form-control', include_blank: true, selected: '' %>
+  <%= f.select :status, Task.statuses , class: 'form-control', include_blank: true, selected: '' %>
 
   <%= f.hidden_field :search, value: true %>
 
