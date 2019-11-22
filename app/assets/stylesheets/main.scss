@@ -1,0 +1,67 @@
+body {
+  text-align: center;
+  background-image: image-url("task_back.jpg");
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.task_table {
+  width: 50%;
+  margin: 20px auto;
+}
+
+.btn {
+  margin: 20px;
+}
+
+.main_contents {
+  min-height: 750px;
+}
+
+#name_search {
+  width: 30%;
+  margin: 0 auto;
+}
+
+form {
+  border-bottom: dashed 3px orange;
+}
+
+td, th, a {
+  font-size: 1.875rem;
+}
+
+.new_table {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.new_task_submit {
+  margin: 10px;
+}
+
+table {
+  background-color: antiquewhite;
+}
+
+.task_show_table {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.task_show_table tr {
+  height: 50px;
+}
+
+footer {
+  width: 100%;
+  margin-top: auto;
+  text-align: center;
+  background-color: #eee;
+  height: 40px;
+  border: solid 1px #ccc;
+}

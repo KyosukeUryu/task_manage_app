@@ -6,7 +6,7 @@
 <% end %>
 
 <%= form_with(model: @task, local: true) do |f| %>
-  <table>
+  <table class="table new_table">
     <tr>
       <th><%= f.label :name %></th>
       <td><%= f.text_field :name %></td>
@@ -15,8 +15,29 @@
       <th><%= f.label :description %></th>
       <td><%= f.text_area :description %></td>
     </tr>
+    <tr>
+      <th><%= f.label :deadline, id: 'task_deadline' %></th>
+      <td><%= f.date_select(
+                            :deadline,
+                            use_year_number: true,
+                            use_month_number: true,
+                            use_day_number: true,
+                            start_year: Time.now.year,
+                            end_year: Time.now.year + 10)
+      %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :status, id: 'task_status' %></th>
+      <td><%= f.select :status, Task.statuses.keys,
+        selected: Task.statuses[@task.status] %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :priority %></th>
+      <td><%= f.select :priority, Task.priorities.keys,
+        selected: Task.priorities[@task.priority] %></td>
+    </tr>
   </table>
-  <%= f.submit '登録する' %>
+  <%= f.submit '登録する', class: 'new_task_submit' %>
 <% end %>
 
-<%= link_to '一覧に戻る', tasks_path %>
+<%= link_to '一覧に戻る', tasks_path, class: 'btn btn-info' %>
