@@ -48,8 +48,13 @@ table {
   background-color: antiquewhite;
 }
 
-tr {
-  border-color: blue;
+.task_show_table {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.task_show_table tr {
+  height: 50px;
 }
 
 footer {
