@@ -6,6 +6,7 @@ class Task < ApplicationRecord
   validates :priority, presence: true
   enum status: [:"未着手", :"着手中", :"完了"]
   enum priority: [:"高", :"中", :"低"]
+  belongs_to :user
 
   scope :name_search, -> (name){where('name LIKE ?', "%#{name}%")}
   scope :status_search, -> (status){where('status = ?', status)}
