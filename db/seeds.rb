@@ -1,6 +1,10 @@
-User.create!(
-            name: 'hoge',
-            email: 'hoge@fuga.com',
-            password: 'hogefuga',
-            password_confirmation: 'hogefuga',
-)
+20.times do
+  Task.create!(
+              name: 'hoge',
+              description: 'fuga',
+              deadline: Time.now,
+              status: 0,
+              priority: 0,
+              user_id: 1
+  )
+end
