@@ -17,6 +17,7 @@ class TasksController < ApplicationController
 
     @tasks = Task.standard.page(params[:page]).per(10)
     @tasks = Task.sorting.page(params[:page]).per(10) if params[:sort_expired]
+    @tasks = Task.sorting_priority.page(params[:page]).per(10) if params[:sort_priority]
     if params[:task]
       @tasks = @tasks.name_search(params[:task][:name]).page(params[:page]).per(10)
       @tasks = @tasks.status_search(params[:task][:status]).page(params[:page]).per(10) if params[:task][:status].present?
