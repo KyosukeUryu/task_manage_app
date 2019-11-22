@@ -44,4 +44,24 @@ RSpec.describe 'タスク管理機能', type: :model do
     expect(task).to be_valid
   end
 
+  before do
+    FactoryBot.create(:task)
+    FactoryBot.create(:second_task)
+  end
+
+  it 'name_searchで検索したnameのタスクが検索される' do
+    tasks = Task.name_search('hoge')
+    expect(tasks.last.name).to eq 'hoge'
+  end
+
+  it 'status_searchで検索したstatusのタスクが検索される' do
+    tasks = Task.status_search(1)
+    expect(tasks.last.status).to eq "着手中"
+  end
+
+  it 'priority_searchで検索したpriorityのタスクが検索される' do
+    tasks = Task.priority_search(1)
+    expect(tasks.last.priority).to eq "中"
+  end
+
 end
