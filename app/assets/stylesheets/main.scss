@@ -1,6 +1,12 @@
 body {
   text-align: center;
-  background-image: image-url("task_back.jpg")
+  background-image: image-url("task_back.jpg");
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .task_table {
@@ -10,6 +16,10 @@ body {
 
 .btn {
   margin: 20px;
+}
+
+.main_contents {
+  min-height: 750px;
 }
 
 #name_search {
@@ -40,4 +50,13 @@ table {
 
 tr {
   border-color: blue;
+}
+
+footer {
+  width: 100%;
+  margin-top: auto;
+  text-align: center;
+  background-color: #eee;
+  height: 40px;
+  border: solid 1px #ccc;
 }
