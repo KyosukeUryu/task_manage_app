@@ -48,6 +48,17 @@ RSpec.describe Task, type: :system do
         expect(page).to have_content 'test_name'
       end
     end
+
+    context '「優先順位でソートする」を押した場合' do
+      it 'タスクが優先順位の昇順に並び替えられる' do
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content 'hoge'
+        click_on '優先順位でソートする'
+        sleep 1
+        new_task_list = all('.task_row')
+        expect(new_task_list[0]).to have_content 'test_name'
+      end
+    end
   end
 
   describe 'タスク登録画面' do
