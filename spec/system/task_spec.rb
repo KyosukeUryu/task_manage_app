@@ -1,17 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :system do
-  before do
-    @user = FactoryBot.create(:user)
-    @task1 = FactoryBot.create(:task, user: @user)
-    @task2 = FactoryBot.create(:second_task, user: @user)
-    visit new_session_path
-    fill_in "session_email", with: 'hoge@example.com'
-    fill_in "session_password", with: 'password'
-    click_on 'ログインする'
+  describe 'ログイン前のタスク機能制限' do
+    context 'ログイン前にタスク機能のページに飛ぼうとする' do
+      it 'ログイン画面へ飛ばされる' do
+        visit tasks_path
+        expect(page).to have_content 'ログイン画面'
+        visit new_task_path
+        expect(page).to have_content 'ログイン画面'
+      end
+    end
   end
+
   describe 'タスク一覧画面' do
     before do
+      @user = FactoryBot.create(:user)
+      @task1 = FactoryBot.create(:task, user: @user)
+      @task2 = FactoryBot.create(:second_task, user: @user)
+      visit new_session_path
+      fill_in "session_email", with: 'hoge@example.com'
+      fill_in "session_password", with: 'password'
+      click_on 'ログインする'
       visit tasks_path
     end
 
@@ -69,6 +78,15 @@ RSpec.describe Task, type: :system do
   end
 
   describe 'タスク登録画面' do
+    before do
+      @user = FactoryBot.create(:user)
+      @task1 = FactoryBot.create(:task, user: @user)
+      @task2 = FactoryBot.create(:second_task, user: @user)
+      visit new_session_path
+      fill_in "session_email", with: 'hoge@example.com'
+      fill_in "session_password", with: 'password'
+      click_on 'ログインする'
+    end
     context '必要項目を入力して、createボタンを押した場合' do
       it 'データが保存されること' do
         visit new_task_path
@@ -88,12 +106,21 @@ RSpec.describe Task, type: :system do
   end
 
   describe 'タスク詳細画面' do
-     context '任意のタスク詳細画面に遷移した場合' do
-       it '該当タスクの内容が表示されたページに遷移すること' do
-         click_on 'test_name'
-         expect(page).to have_content 'test_name'
-         expect(page).not_to have_content 'hoge'
-       end
-     end
+    before do
+      @user = FactoryBot.create(:user)
+      @task1 = FactoryBot.create(:task, user: @user)
+      @task2 = FactoryBot.create(:second_task, user: @user)
+      visit new_session_path
+      fill_in "session_email", with: 'hoge@example.com'
+      fill_in "session_password", with: 'password'
+      click_on 'ログインする'
+    end
+    context '任意のタスク詳細画面に遷移した場合' do
+      it '該当タスクの内容が表示されたページに遷移すること' do
+        click_on 'test_name'
+        expect(page).to have_content 'test_name'
+        expect(page).not_to have_content 'hoge'
+      end
+    end
   end
 end
