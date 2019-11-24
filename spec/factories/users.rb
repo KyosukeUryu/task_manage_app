@@ -4,9 +4,12 @@ FactoryBot.define do
     email { 'hoge@example.com' }
     password { 'password' }
     password_confirmation { 'password' }
-    # after(:build) do |user|
-    #   user.task = FactoryBot.create(:task)
-    #   user.second_task = FactoryBot.create(:second_task)
-    # end
+  end
+
+  factory :other_user, class: User do
+    name { 'new_man' }
+    email { 'new@man.com' }
+    password { 'password' }
+    password_confirmation { 'password' }
   end
 end
