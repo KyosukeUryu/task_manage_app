@@ -1,10 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :system do
+  before do
+    @user = FactoryBot.create(:user)
+    @task1 = FactoryBot.create(:task, user: @user)
+    @task2 = FactoryBot.create(:second_task, user: @user)
+    visit new_session_path
+    fill_in "session_email", with: 'hoge@example.com'
+    fill_in "session_password", with: 'password'
+    click_on 'ログインする'
+  end
   describe 'タスク一覧画面' do
     before do
-      FactoryBot.create(:task)
-      FactoryBot.create(:second_task)
       visit tasks_path
     end
 
@@ -83,9 +90,6 @@ RSpec.describe Task, type: :system do
   describe 'タスク詳細画面' do
      context '任意のタスク詳細画面に遷移した場合' do
        it '該当タスクの内容が表示されたページに遷移すること' do
-         task1 = FactoryBot.create(:task)
-         task2 = FactoryBot.create(:second_task)
-         visit tasks_path
          click_on 'test_name'
          expect(page).to have_content 'test_name'
          expect(page).not_to have_content 'hoge'
