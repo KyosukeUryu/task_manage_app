@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
+  before_action :recommend_login
   def index
     # if params[:sort_expired].present?
     #   @tasks = Task.sorting
@@ -15,9 +16,9 @@ class TasksController < ApplicationController
     #   end
     # end
 
-    @tasks = Task.standard.page(params[:page]).per(10)
-    @tasks = Task.sorting.page(params[:page]).per(10) if params[:sort_expired]
-    @tasks = Task.sorting_priority.page(params[:page]).per(10) if params[:sort_priority]
+    @tasks = current_user.tasks.standard.page(params[:page]).per(10)
+    @tasks = current_user.tasks.sorting.page(params[:page]).per(10) if params[:sort_expired]
+    @tasks = current_user.tasks.sorting_priority.page(params[:page]).per(10) if params[:sort_priority]
     if params[:task]
       @tasks = @tasks.name_search(params[:task][:name]).page(params[:page]).per(10)
       @tasks = @tasks.status_search(params[:task][:status]).page(params[:page]).per(10) if params[:task][:status].present?
@@ -32,6 +33,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
       redirect_to tasks_path, notice: 'タスクが作成できました'
     else

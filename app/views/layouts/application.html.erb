@@ -25,14 +25,25 @@
             </div>
             <div id="gnavi" class="collapse navbar-collapse">
               <ul class="nav navbar-nav">
-                <li><%= link_to '新規タスク登録', new_task_path %></li>
+                <% if logged_in? %>
+                  <li><%= link_to '新規タスク登録', new_task_path %></li>
+                  <li><%= link_to 'ユーザ詳細', user_path(current_user.id) %></li>
+                  <li><%= link_to 'ログアウト', session_path(current_user.id), method: :delete, data: { confirm: 'ログアウトしますか？' } %></li>
+                <% else %>
+                  <li><%= link_to '新規ユーザー登録', new_user_path %></li>
+                  <li><%= link_to 'ログイン', new_session_path %></li>
+                <% end %>
               </ul>
             </div>
           </div>
         </nav>
       </header>
       <div class="main_contents">
-        <p><%= notice %></p>
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>">
+            <%= value.html_safe %>
+          </div>
+        <% end %>
         <%= yield %>
       </div>
       <footer>

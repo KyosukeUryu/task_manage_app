@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic
+  include SessionsHelper
 
   private
   def basic

@@ -1,0 +1,9 @@
+<h2>トップページ</h2>
+<% if logged_in? %>
+  <h3>是非タスク管理アプリをご利用ください！</h3>
+  <%= link_to 'あなたのタスク一覧', tasks_path, class: 'btn btn-info' %>
+  <%= link_to 'タスク新規登録', new_task_path, class: 'btn btn-success' %>
+<% else %>
+  <%= link_to 'ログインはこちら', new_session_path, class: 'btn btn-primary btn-block btn-lg btn-tops' %>
+  <%= link_to '初めての方はこちら', new_user_path, class: 'btn btn-default btn-block btn-lg btn-tops' %>
+<% end %>

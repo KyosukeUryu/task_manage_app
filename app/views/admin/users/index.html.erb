@@ -1,0 +1,29 @@
+<h2>管理画面</h2>
+<h3>ユーザー一覧</h3>
+<%= link_to 'ユーザー新規登録', new_admin_user_path, class: 'btn btn-primary' %>
+
+<table class="table table-hover">
+  <tr>
+    <th>ID</th>
+    <th>名前（クリックで詳細へ）</th>
+    <th>メールアドレス</th>
+    <th>ユーザーのタスク数</th>
+    <th>ユーザー登録日</th>
+  </tr>
+  <% @users.each do |user| %>
+    <tr class="user_row">
+      <td><%= user.id %></td>
+      <td><%= link_to user.name, admin_user_path(user) %></td>
+      <td><%= user.email %></td>
+      <td><%= user.tasks.count %></td>
+      <td><%= user.created_at.strftime("%Y-%m-%d") %></td>
+      <td><%= link_to 'ユーザー情報編集', edit_admin_user_path(user), class: 'btn btn-warning' %></td>
+      <td><%= link_to 'ユーザーを削除', admin_user_path(user), method: :delete, class: 'btn btn-danger', data: { confirm: '本当に削除しますか？' } %></td>
+      <% if user.admin? %>
+        <td><%= link_to '権限を解除する', admin_user_path(user, user: { admin: false}), method: :patch, class: 'btn btn-default' %></td>
+      <% else %>
+        <td><%= link_to '権限付与', admin_user_path(user, user: { admin: true }), method: :patch, class: 'btn btn-success' %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
