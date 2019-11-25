@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :admin_only
   before_action :set_user, only: %i[show edit update destroy]
   def index
-    @users = User.select(:id, :name, :email, :created_at).order(created_at: :desc).includes(:tasks)
+    @users = User.select(:id, :name, :email, :created_at, :admin).order(created_at: :desc).includes(:tasks)
   end
 
   def new
@@ -44,7 +44,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 
   def set_user

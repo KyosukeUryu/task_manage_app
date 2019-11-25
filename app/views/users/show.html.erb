@@ -1,4 +1,23 @@
 <h2>ユーザ詳細</h2>
 <h3><%= @user.name %>さんのページ</h3>
+<% if @user.admin? %>
+  <p>あなたは管理者です</p>
+<% else %>
+  <p>あなたは一般会員です</p>
+<% end %>
+
+<% if @user.tasks.blank? %>
+  <p>まだタスクがありません</p>
+<% else %>
+  <p>最新タスクについて</p>
+  <ul>
+    <li>タスク名：<%= @user.tasks.last.name %></li>
+    <li>詳細：<%= @user.tasks.last.description %></li>
+    <li>終了期限：<%= @user.tasks.last.deadline %></li>
+    <li>ステータス：<%= @user.tasks.last.status %></li>
+    <li>優先度：<%= @user.tasks.last.priority %></li>
+    <li>作成日：<%= @user.tasks.last.created_at.strftime("%Y-%m-%d") %></li>
+  </ul>
+<% end %>
 
 <%= link_to 'タスク一覧に戻る', root_path, class: 'btn btn-info' %>
