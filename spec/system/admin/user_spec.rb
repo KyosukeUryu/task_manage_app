@@ -4,6 +4,7 @@ RSpec.describe User, type: :system do
   before do
     @user = FactoryBot.create(:user)
     @user2 = FactoryBot.create(:other_user)
+    @user3 = FactoryBot.create(:third_user)
     visit new_session_path
     fill_in "session_email", with: 'hoge@example.com'
     fill_in "session_password", with: 'password'
@@ -25,7 +26,7 @@ RSpec.describe User, type: :system do
         user_list = all('.user_row')
         user_list[0].click_on 'ユーザーを削除'
         page.driver.browser.switch_to.alert.accept
-        expect(page).not_to have_content('new_man')
+        expect(page).not_to have_content('third_user')
       end
     end
   end
