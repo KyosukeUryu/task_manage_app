@@ -1,12 +1,14 @@
 <h2>管理画面</h2>
 <h3>ユーザー一覧</h3>
+<%= link_to 'ユーザー新規登録', new_admin_user_path, class: 'btn btn-primary' %>
 <ul>
   <% @users.each do |user| %>
     <li>ID:<%= user.id %></li>
-    <li>名前：<%= user.name %></li>
+    <li>名前：（クリックで詳細へ）<%= link_to user.name, admin_user_path(user) %></li>
     <li>メールアドレス：<%= user.email %></li>
     <li>ユーザーのタスク数：<%= user.tasks.count %></li>
     <li>作成日：<%= user.created_at.strftime("%Y-%m-%d") %></li>
+    <li><%= link_to '編集', edit_admin_user_path(user), class: 'btn btn-warning' %></li>
     <li><%= link_to 'ユーザーを削除', admin_user_path(user), method: :delete, class: 'btn btn-danger', data: { confirm: '本当に削除しますか？' } %></li>
   <% end %>
 </ul>
