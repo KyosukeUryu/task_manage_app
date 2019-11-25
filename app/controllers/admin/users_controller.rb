@@ -25,6 +25,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      redirect_to admin_users_path, notice: '対象ユーザー情報を更新しました'
+    else
+      render :edit
+    end
   end
 
   def destroy
