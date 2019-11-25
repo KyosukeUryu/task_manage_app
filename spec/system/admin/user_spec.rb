@@ -20,6 +20,14 @@ RSpec.describe User, type: :system do
         expect(page).to have_content('new_man')
       end
     end
+    context '一覧画面で削除ボタンを押した場合' do
+      it '対象ユーザーが削除される' do
+        user_list = all('.user_row')
+        user_list[0].click_on 'ユーザーを削除'
+        page.driver.browser.switch_to.alert.accept
+        expect(page).not_to have_content('new_man')
+      end
+    end
   end
 
   describe '管理者のユーザー詳細画面' do
