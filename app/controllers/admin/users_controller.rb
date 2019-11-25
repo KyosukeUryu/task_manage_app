@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :admin_only
   before_action :set_user, only: %i[show edit update destroy]
+
   def index
     @users = User.select(:id, :name, :email, :created_at, :admin).order(created_at: :desc).includes(:tasks)
   end
@@ -33,8 +34,11 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to admin_users_path, notice: '対象ユーザーを削除しました'
+    if @user.destroy
+      redirect_to admin_users_path, notice: '対象ユーザーを削除しました'
+    else
+      redirect_to admin_users_path, notice: '管理者は１名以上必要です'
+    end
   end
 
   private
@@ -50,4 +54,5 @@ class Admin::UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+
 end
