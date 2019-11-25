@@ -10,7 +10,7 @@
   <p>まだタスクがありません</p>
 <% else %>
   <p>最新タスクについて</p>
-  <ul>
+  <ul class="user_task_list">
     <li>タスク名：<%= @user.tasks.last.name %></li>
     <li>詳細：<%= @user.tasks.last.description %></li>
     <li>終了期限：<%= @user.tasks.last.deadline %></li>
