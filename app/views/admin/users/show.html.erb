@@ -1,8 +1,19 @@
 <h2>管理画面</h2>
 
 <h3><%= @user.name %>さんの詳細</h3>
-<ul>
-  <li>タスク数<%= @user.tasks.count %>件</li>
-</ul>
+<h4>タスク数<%= @user.tasks.count %>件</h4>
 
+<% if @user.tasks.blank? %>
+  <p>まだタスクがありません</p>
+<% else %>
+  <p>最新タスクについて</p>
+  <ul>
+    <li>タスク名：<%= @user.tasks.last.name %></li>
+    <li>詳細：<%= @user.tasks.last.description %></li>
+    <li>終了期限：<%= @user.tasks.last.deadline %></li>
+    <li>ステータス：<%= @user.tasks.last.status %></li>
+    <li>優先度：<%= @user.tasks.last.priority %></li>
+    <li>作成日：<%= @user.tasks.last.created_at.strftime("%Y-%m-%d") %></li>
+  </ul>
+<% end %>
 <%= link_to 'ユーザー一覧に戻る', admin_users_path, class: 'btn btn-info' %>
