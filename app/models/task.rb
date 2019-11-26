@@ -7,6 +7,8 @@ class Task < ApplicationRecord
   enum status: [:"未着手", :"着手中", :"完了"]
   enum priority: [:"高", :"中", :"低"]
   belongs_to :user
+  has_many :labellings, dependent: :destroy
+  has_many :labels, through: :labellings
 
   scope :name_search, -> (name){where('name LIKE ?', "%#{name}%")}
   scope :status_search, -> (status){where('status = ?', status)}
