@@ -36,6 +36,10 @@
       <td><%= f.select :priority, Task.priorities.keys,
         selected: Task.priorities[@task.priority] %></td>
     </tr>
+    <tr>
+      <th>ラベル</th>
+      <td><%= f.collection_check_boxes(:label_ids, Label.all, :id, :name) %></td>
+    </tr>
   </table>
   <%= f.submit '登録する', class: 'new_task_submit' %>
 <% end %>
