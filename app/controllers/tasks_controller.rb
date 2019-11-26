@@ -2,20 +2,6 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
   before_action :recommend_login
   def index
-    # if params[:sort_expired].present?
-    #   @tasks = Task.sorting
-    # elsif params[:task].blank?
-    #   @tasks = Task.standard
-    # else
-    #   if params[:task][:name].present? && params[:task][:status].present?
-    #     @tasks = Task.both_search(params[:task][:name], params[:task][:status])
-    #   elsif params[:task][:name].present?
-    #     @tasks = Task.name_search(params[:task][:name])
-    #   else
-    #     @tasks = Task.status_search(params[:task][:status])
-    #   end
-    # end
-
     @tasks = current_user.tasks.standard.page(params[:page]).per(10)
     @tasks = current_user.tasks.sorting.page(params[:page]).per(10) if params[:sort_expired]
     @tasks = current_user.tasks.sorting_priority.page(params[:page]).per(10) if params[:sort_priority]
@@ -29,7 +15,6 @@ class TasksController < ApplicationController
         @tasks = @tasks.where(id: @labelled_tasks_id)
       end
     end
-
   end
 
   def new

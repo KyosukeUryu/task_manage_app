@@ -5,7 +5,7 @@
     <tr>
       <th>ラベル</th>
       <% @task.labels.each do |label| %>
-        <td><%= label.name %></td>
+        <td class="badge badge-primary"><%= label.name %></td>
       <% end %>
     </tr>
   <% end %>
