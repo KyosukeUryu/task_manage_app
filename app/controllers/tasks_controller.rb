@@ -23,6 +23,11 @@ class TasksController < ApplicationController
       @tasks = @tasks.name_search(params[:task][:name]).page(params[:page]).per(10)
       @tasks = @tasks.status_search(params[:task][:status]).page(params[:page]).per(10) if params[:task][:status].present?
       @tasks = @tasks.priority_search(params[:task][:priority]).page(params[:page]).per(10) if params[:task][:priority].present?
+      if params[:task][:labels_id].present?
+        @labellings = Labelling.where('label_id = ?', params[:task][:labels_id])
+        @labelled_tasks_id = @labellings.pluck(:task_id)
+        @tasks = @tasks.where(id: @labelled_tasks_id)
+      end
     end
 
   end
