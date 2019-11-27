@@ -6,6 +6,9 @@ FactoryBot.define do
     status { 1 }
     priority { 1 }
     user
+    after(:create) do |task|
+      create(:labelling, task: task, label: create(:label))
+    end
   end
 
   factory :second_task, class: Task do

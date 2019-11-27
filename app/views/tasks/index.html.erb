@@ -10,6 +10,9 @@
 
   <%= f.label :priority, '優先度検索' %>
   <%= f.select :priority, Task.priorities, class: 'form-control', include_blank: true, selected: '' %>
+
+  <%= f.label :labels_id, 'ラベル検索' %>
+  <%= f.select :labels_id, label_searching, class: 'form-control', include_blank: true, selected: '' %>
   <%= f.submit '検索する' %><%= link_to '元に戻す', tasks_path, class: 'btn btn-primary' %>
 <% end %>
 

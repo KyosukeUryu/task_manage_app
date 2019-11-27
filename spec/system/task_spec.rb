@@ -62,6 +62,9 @@ RSpec.describe Task, type: :system do
         select '中', from: '優先度検索'
         click_on '検索する'
         expect(page).to have_content 'test_name'
+        select 'testing', from: 'ラベル検索'
+        click_on '検索する'
+        expect(page).to have_content 'test_name'
       end
     end
 
@@ -97,6 +100,7 @@ RSpec.describe Task, type: :system do
         select '13', from: "task_deadline_3i"
         select '着手中', from: "task_status"
         select '中', from: "優先順位"
+        check 'testing'
         click_on '登録する'
         expect(page).to have_content 'hoge'
         expect(page).to have_content 'fuga'
