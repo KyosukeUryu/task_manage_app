@@ -1,0 +1,15 @@
+<% if logged_in? %>
+  <h3>期限超過、期限間近のタスクがあります！</h3>
+
+
+  <% @alert_tasks.each do |alert_task| %>
+    <ul>
+      <li><%= alert_task.name %></li>
+      <li><%= alert_task.deadline %></li>
+    </ul>
+  <% end %>
+<% else %>
+  <% for i in 1..10 do %>
+    <%= link_to "ログインボタン#{i}号", new_session_path, class: 'btn btn-primary' %>
+  <% end %>
+<% end %>

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic
+  before_action :set_tasks, if: :logged_in?
   include SessionsHelper
 
   private
@@ -9,5 +10,9 @@ class ApplicationController < ActionController::Base
         name == ENV['BASIC_AUTH_NAME'] && password == ENV['BASIC_AUTH_PASSWORD']
       end
     end
+  end
+
+  def set_tasks
+    @alert_tasks = current_user.tasks.where('deadline < ?', Time.zone.today - 10)
   end
 end
