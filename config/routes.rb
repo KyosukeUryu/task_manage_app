@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   end
 
   resources :groups
+
+  resources :joins, only: %i[create destroy]
 end

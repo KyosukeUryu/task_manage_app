@@ -12,7 +12,15 @@
       <td><%= group.created_at.strftime("%Y-%m-%d") %></td>
       <td><%= group.user.name %></td>
       <td><%= link_to 'グループ詳細', group_path(group), class: 'btn btn-warning' %></td>
-      <td><%= link_to 'グループ解散', group_path(group), method: :delete, class: 'btn btn-danger', data: { confirm: '本当に解散しますか？'} %></td>
+      <% if group.owner_id == current_user.id %>
+        <td><%= link_to 'グループ名変更', edit_group_path(group), class: 'btn btn-default' %></td>
+        <td><%= link_to 'グループ解散', group_path(group), method: :delete, class: 'btn btn-danger', data: { confirm: '本当に解散しますか？'} %></td>
+      <% end %>
+      <% if current_user.joins.find_by(group_id: group.id) %>
+        <td><%= link_to 'グループから外れる', join_path(group.joins.find_by(user_id: current_user.id)), method: :delete, class: 'btn btn-info' %></td>
+      <% else %>
+        <td><%= link_to 'グループに参加する', joins_path(group_id: group.id), method: :post, class: 'btn btn-success' %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
