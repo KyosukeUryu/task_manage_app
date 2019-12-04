@@ -1,0 +1,9 @@
+<h2>グループ新規登録</h2>
+<h3>タスク管理を共有するチームを作ろう</h3>
+
+<%= form_with(model: @group, local: true) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit %>
+<% end %>
