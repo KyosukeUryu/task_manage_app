@@ -1,0 +1,14 @@
+<% if @group.errors.any? %>
+  <p><%= @group.errors.count %>件エラーがあります</p>
+  <ul>
+    <% @group.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= form_with(model: @group, local: true) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit %>
+<% end %>
