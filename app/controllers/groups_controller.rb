@@ -1,4 +1,6 @@
 class GroupsController < ApplicationController
+  before_action :set_groups, only: %i[show edit update destroy]
+
   def index
     @groups = Group.order(created_at: :desc).page(params[:page]).per(10)
   end
@@ -17,6 +19,8 @@ class GroupsController < ApplicationController
     end
   end
 
+  def show
+  end
 
 
   private
@@ -25,6 +29,8 @@ class GroupsController < ApplicationController
     params.require(:group).permit(:name)
   end
 
-
+  def set_groups
+    @group = Group.find(params[:id])
+  end
 
 end

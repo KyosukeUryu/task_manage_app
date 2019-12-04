@@ -11,6 +11,7 @@
       <td><%= group.name %></td>
       <td><%= group.created_at.strftime("%Y-%m-%d") %></td>
       <td><%= group.user.name %></td>
+      <td><%= link_to 'グループ詳細', group_path(group), class: 'btn btn-warning' %></td>
     </tr>
   <% end %>
 </table>
