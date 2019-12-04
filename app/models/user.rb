@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :tasks, dependent: :destroy
+  has_many :joins, dependent: :destroy
+  has_many :groups, through: :joins
 
   validates :name, presence: true, length: { maximum: 40 }
   validates :email, presence: true, length: { maximum: 255 },
