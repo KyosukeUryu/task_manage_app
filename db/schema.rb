@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_045819) do
+ActiveRecord::Schema.define(version: 2019_12_04_080125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_12_04_045819) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "owner_id"
   end
 
   create_table "joins", force: :cascade do |t|
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 2019_12_04_045819) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "groups", "users", column: "owner_id"
   add_foreign_key "joins", "groups"
   add_foreign_key "joins", "users"
   add_foreign_key "labellings", "labels"

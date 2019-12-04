@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :joins, dependent: :destroy
   has_many :groups, through: :joins
+  has_many :groups, foreign_key: :owner_id
 
   validates :name, presence: true, length: { maximum: 40 }
   validates :email, presence: true, length: { maximum: 255 },
