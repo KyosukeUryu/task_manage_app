@@ -20,6 +20,13 @@
       <td><%= task.deadline %></td>
       <td><%= task.status %></td>
       <td><%= task.priority %></td>
+      <% if task.user_id != current_user.id %>
+        <% if current_user.notices.find_by(task_id: task.id) %>
+          <td>既読</td>
+        <% else %>
+          <td>未読</td>
+        <% end %>
+      <% end %>
     </tr>
   <% end %>
 </table>
