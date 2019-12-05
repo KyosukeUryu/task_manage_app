@@ -1,5 +1,25 @@
 <h2>グループ詳細</h2>
 
-<%= @group.name %>
+<h3>グループ名：<%= @group.name %></h3>
 
-<h3>グループ参加者一覧</h3>
+<h3>このグループのタスク一覧</h3>
+<table class="task_table table">
+  <tr>
+    <th>タスク名</th>
+    <th>タスク詳細</th>
+    <th>投稿者</th>
+    <th>終了期限</th>
+    <th>ステータス</th>
+    <th>優先順位</th>
+  </tr>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.name %></td>
+      <td><%= task.description %></td>
+      <td><%= task.user.name %></td>
+      <td><%= task.deadline %></td>
+      <td><%= task.status %></td>
+      <td><%= task.priority %></td>
+    </tr>
+  <% end %>
+</table>

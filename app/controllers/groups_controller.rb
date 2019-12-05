@@ -23,6 +23,12 @@ class GroupsController < ApplicationController
 
   def show
     redirect_to groups_path if @group.joins.find_by(user_id: current_user.id).blank?
+    @users = @group.users
+    @tasks = []
+    @users.each do |user|
+      @tasks << user.tasks
+    end
+    @tasks = @tasks.flatten
   end
 
   def edit
