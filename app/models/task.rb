@@ -10,6 +10,7 @@ class Task < ApplicationRecord
   has_many :labellings, dependent: :destroy
   has_many :labels, through: :labellings
   has_many :notices, dependent: :destroy
+  has_many_attached :files
 
   scope :name_search, -> (name){where('name LIKE ?', "%#{name}%")}
   scope :status_search, -> (status){where('status = ?', status)}

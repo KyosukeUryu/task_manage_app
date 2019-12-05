@@ -40,6 +40,10 @@
       <th>ラベル</th>
       <td><%= f.collection_check_boxes(:label_ids, Label.all, :id, :name) %></td>
     </tr>
+    <tr>
+      <th>添付ファイル</th>
+      <td><%= f.file_field :files, multiple: true %></td>
+    </tr>
   </table>
   <%= f.submit '登録する', class: 'new_task_submit' %>
 <% end %>

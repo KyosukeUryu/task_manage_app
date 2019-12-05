@@ -36,8 +36,9 @@ td, th, a {
 }
 
 .new_table {
-  width: 40%;
+  width: 60%;
   margin: 0 auto;
+  table-layout: fixed;
 }
 
 .new_task_submit {
