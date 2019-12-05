@@ -14,6 +14,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     if @group.save
+      current_user.joins.create(group_id: @group.id)
       redirect_to groups_path, notice: 'グループを作成しました'
     else
       render :new
