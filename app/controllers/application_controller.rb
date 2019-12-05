@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_tasks
-    @alert_tasks = current_user.tasks.where('deadline < ?', Time.zone.today - 10)
+    @alert_tasks = current_user.tasks.expire_comming
   end
 end
