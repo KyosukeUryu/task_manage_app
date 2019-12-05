@@ -1,5 +1,6 @@
 class GroupsController < ApplicationController
   before_action :set_groups, only: %i[show edit update destroy]
+  before_action :owner_only, only: %i[edit update destroy]
 
   def index
     @groups = Group.order(created_at: :desc).page(params[:page]).per(10)
@@ -44,6 +45,12 @@ class GroupsController < ApplicationController
 
   def set_groups
     @group = Group.find(params[:id])
+  end
+
+  def owner_only
+    if current_user.id != @group.owner_id
+      redirect_to group_path
+    end
   end
 
 end
