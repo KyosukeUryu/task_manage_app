@@ -2,7 +2,7 @@
 
 <h3>グループ名：<%= @group.name %></h3>
 
-<h3>このグループのタスク一覧</h3>
+<h3>このグループ参加者のタスク一覧</h3>
 <table class="task_table table">
   <tr>
     <th>タスク名</th>
@@ -14,7 +14,7 @@
   </tr>
   <% @tasks.each do |task| %>
     <tr>
-      <td><%= task.name %></td>
+      <td><%= link_to task.name, task_path(task) %></td>
       <td><%= task.description %></td>
       <td><%= task.user.name %></td>
       <td><%= task.deadline %></td>

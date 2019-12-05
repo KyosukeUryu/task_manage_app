@@ -32,6 +32,9 @@ class TasksController < ApplicationController
   end
 
   def show
+    if @task.user_id != current_user.id && current_user.notices.find_by(task_id: params[:id]).blank?
+      current_user.notices.create(task_id: params[:id])
+    end
   end
 
   def edit

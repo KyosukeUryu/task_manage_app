@@ -9,6 +9,7 @@ class Task < ApplicationRecord
   belongs_to :user
   has_many :labellings, dependent: :destroy
   has_many :labels, through: :labellings
+  has_many :notices, dependent: :destroy
 
   scope :name_search, -> (name){where('name LIKE ?', "%#{name}%")}
   scope :status_search, -> (status){where('status = ?', status)}

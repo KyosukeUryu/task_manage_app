@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :joins, dependent: :destroy
   has_many :groups, through: :joins
   has_many :groups, foreign_key: :owner_id
+  has_many :notices, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 40 }
   validates :email, presence: true, length: { maximum: 255 },
