@@ -21,6 +21,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    redirect_to groups_path if @group.joins.find_by(user_id: current_user.id).blank?
   end
 
   def edit
@@ -49,7 +50,7 @@ class GroupsController < ApplicationController
 
   def owner_only
     if current_user.id != @group.owner_id
-      redirect_to group_path
+      redirect_to groups_path
     end
   end
 
