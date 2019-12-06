@@ -1,14 +1,16 @@
 <% if logged_in? %>
   <% if @alert_tasks.present? %>
-    <h3>期限超過、期限間近のタスクがあります！</h3>
+    <div class="alert_zone">
+      <h3>期限超過、期限間近のタスクがあります！</h3>
 
 
-    <% @alert_tasks.each do |alert_task| %>
-      <ul>
-        <li><%= alert_task.name %></li>
-        <li><%= alert_task.deadline %></li>
-      </ul>
-    <% end %>
+      <% @alert_tasks.each do |alert_task| %>
+        <ul>
+          <li>タスク名：<%= alert_task.name %></li>
+          <li>期限：<%= alert_task.deadline %></li>
+        </ul>
+      <% end %>
+    </div>
   <% else %>
     <h3>期限切れ・期限間近のタスクはありません</h3>
   <% end %>
