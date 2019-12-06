@@ -18,4 +18,9 @@ class Task < ApplicationRecord
   scope :sorting, -> {order(deadline: :desc)}
   scope :standard, -> {order(created_at: :desc)}
   scope :sorting_priority, -> {order(priority: :asc)}
+
+  def start_time
+    self.deadline
+  end
+
 end

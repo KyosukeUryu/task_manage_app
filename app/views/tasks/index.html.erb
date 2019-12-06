@@ -38,8 +38,14 @@
 </table>
 <%= paginate @tasks %>
 <div class="calendar-area">
-  <%= month_calendar do |date| %>
-    <%= date %>
+  <%= month_calendar events: @tasks do |date, tasks| %>
+    <%= date.day %>
+
+    <% tasks.each do |task| %>
+      <div>
+        <%= link_to task.name, task %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 <%= link_to 'タスク新規登録', new_task_path, class: 'btn btn-success' %>
