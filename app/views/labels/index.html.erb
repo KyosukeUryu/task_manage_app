@@ -20,3 +20,6 @@
 </table>
 
 <%= link_to 'ラベル作成', new_label_path, class: 'btn btn-success' %>
+<h3>ラベル使用率</h3>
+
+<%= pie_chart Labelling.joins(:label).group("labels.name").count %>
