@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_070403) do
+ActiveRecord::Schema.define(version: 2019_12_06_015258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(version: 2019_12_05_070403) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_labels_on_user_id"
   end
 
   create_table "notices", force: :cascade do |t|
@@ -105,6 +107,7 @@ ActiveRecord::Schema.define(version: 2019_12_05_070403) do
   add_foreign_key "joins", "users"
   add_foreign_key "labellings", "labels"
   add_foreign_key "labellings", "tasks"
+  add_foreign_key "labels", "users"
   add_foreign_key "notices", "tasks"
   add_foreign_key "notices", "users"
   add_foreign_key "tasks", "users"

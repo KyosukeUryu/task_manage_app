@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :groups, foreign_key: :owner_id
   has_many :notices, dependent: :destroy
   has_one_attached :image
+  has_many :labels, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 40 }
   validates :email, presence: true, length: { maximum: 255 },
