@@ -6,6 +6,12 @@
   <p>あなたは一般会員です</p>
 <% end %>
 
+<% if @user.image.attached? %>
+  プロフィール画像<br>
+  <%= image_tag @user.image.variant(resize: "100x100").processed %>
+<% end %>
+
+
 <% if @user.tasks.blank? %>
   <p>まだタスクがありません</p>
 <% else %>
