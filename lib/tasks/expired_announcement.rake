@@ -14,7 +14,6 @@ namespace :expired_announcement do
     users.each do |user|
       AnnounceTaskMailer.announce_task_mail(user).deliver
     end
-    puts 'なぜじゃ'
 
   end
 end

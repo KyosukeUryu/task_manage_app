@@ -53,18 +53,17 @@ RSpec.describe Task, type: :system do
       it 'ソートに合わせて表示を変更する' do
         fill_in 'name_search', with: 'test_name'
         click_on '検索する'
-        expect(page).to have_content 'test_name'
-        expect(page).not_to have_content 'hoge'
+        expect(page).to have_selector '.task_row', text: 'test_name'
         fill_in 'name_search', with: 'hoge'
         select '未着手', from: '状態検索'
         click_on '検索する'
-        expect(page).to have_content 'hoge'
+        expect(page).to have_selector '.task_row', text: 'hoge'
         select '中', from: '優先度検索'
         click_on '検索する'
-        expect(page).to have_content 'test_name'
+        expect(page).to have_selector '.task_row', text: 'test_name'
         select 'testing', from: 'ラベル検索'
         click_on '検索する'
-        expect(page).to have_content 'test_name'
+        expect(page).to have_selector '.task_row', text: 'test_name'
       end
     end
 
@@ -121,9 +120,11 @@ RSpec.describe Task, type: :system do
     end
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示されたページに遷移すること' do
-        click_on 'test_name'
-        expect(page).to have_content 'test_name'
-        expect(page).not_to have_content 'hoge'
+        within '.task_table' do
+          click_on 'test_name'
+        end
+        expect(page).to have_selector '.task_show_table', text: 'test_name'
+        expect(page).not_to have_selector '.task_show_table', text: 'hoge'
       end
     end
   end
