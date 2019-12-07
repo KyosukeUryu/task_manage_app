@@ -5,7 +5,7 @@ FactoryBot.define do
     deadline { Time.now + (60 * 60 * 24) }
     status { 1 }
     priority { 1 }
-    user
+    user_id { 1 }
     after(:create) do |task|
       create(:labelling, task: task, label: create(:label))
     end
@@ -17,7 +17,7 @@ FactoryBot.define do
     deadline { Time.now }
     status { 0 }
     priority { 2 }
-    user
+    user_id { 2 }
   end
 
 end

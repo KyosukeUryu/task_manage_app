@@ -1,0 +1,10 @@
+<h2>期限間近のタスクがあります！</h2>
+
+<h4><%= @user.name %>さんの期限間近のタスク一覧</h4>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li>タスク名：<%= task.name %></li>
+    <li>期限：<%= task.deadline %></li>
+  <% end %>
+</ul>
