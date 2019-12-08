@@ -19,5 +19,4 @@ FactoryBot.define do
     priority { 2 }
     user_id { 2 }
   end
-
 end

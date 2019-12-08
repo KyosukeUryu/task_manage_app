@@ -23,7 +23,6 @@ User.create!(
               priority: rand(0..2),
               user_id: User.find(i + 1).id
             )
-
 end
 
 Label.create!(

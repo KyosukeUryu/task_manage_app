@@ -66,5 +66,4 @@ RSpec.describe 'タスク管理機能', type: :model do
     tasks = Task.priority_search(1)
     expect(tasks.last.priority).to eq "中"
   end
-
 end
