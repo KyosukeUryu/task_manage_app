@@ -12,9 +12,9 @@ class Task < ApplicationRecord
   has_many :notices, dependent: :destroy
   has_many_attached :pdfs
 
-  scope :name_search, -> (name) {where('name LIKE ?', "%#{name}%")}
-  scope :status_search, -> (status) {where('status = ?', status)}
-  scope :priority_search, -> (priority) {where('priority = ?', priority)}
+  scope :name_search, ->(name) {where('name LIKE ?', "%#{name}%")}
+  scope :status_search, ->(status) {where('status = ?', status)}
+  scope :priority_search, ->(priority) {where('priority = ?', priority)}
   scope :sorting, -> {order(deadline: :desc)}
   scope :standard, -> {order(created_at: :desc)}
   scope :sorting_priority, -> {order(priority: :asc)}
