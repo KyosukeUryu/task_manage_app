@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AnnounceTaskMailer < ApplicationMailer
   def announce_task_mail(user)
     @user = user

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class JoinsController < ApplicationController
   def create
     current_user.joins.create(group_id: params[:group_id])

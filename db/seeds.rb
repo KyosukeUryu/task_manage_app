@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 User.create!(
   name: "admin",
   email: "admin@hoge.com",
