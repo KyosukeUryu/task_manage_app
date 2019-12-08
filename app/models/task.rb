@@ -5,8 +5,8 @@ class Task < ApplicationRecord
   validates :deadline, presence: true
   validates :status, presence: true
   validates :priority, presence: true
-  enum status: [:"未着手", :"着手中", :"完了"]
-  enum priority: [:"高", :"中", :"低"]
+  enum status: %i[未着手 着手中 完了]
+  enum priority: %i[高 中 低]
   belongs_to :user
   has_many :labellings, dependent: :destroy
   has_many :labels, through: :labellings
