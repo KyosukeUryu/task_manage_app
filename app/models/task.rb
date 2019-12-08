@@ -21,6 +21,6 @@ class Task < ApplicationRecord
   scope :sorting_priority, -> { order(priority: :asc) }
 
   def start_time
-    self.deadline
+    deadline
   end
 end

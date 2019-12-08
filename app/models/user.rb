@@ -16,6 +16,6 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, on: :update, allow_blank: true
 
   before_destroy do
-    throw(:abort) if User.where(admin: true).count == 1 && self.admin?
+    throw(:abort) if User.where(admin: true).count == 1 && admin?
   end
 end
