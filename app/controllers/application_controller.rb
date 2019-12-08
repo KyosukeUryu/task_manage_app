@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   private
+
   def basic
     if Rails.env == "production"
       authenticate_or_request_with_http_basic do |name, password|
