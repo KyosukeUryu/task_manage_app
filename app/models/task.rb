@@ -22,5 +22,4 @@ class Task < ApplicationRecord
   def start_time
     self.deadline
   end
-
 end
