@@ -31,8 +31,7 @@ class GroupsController < ApplicationController
     @tasks = @tasks.flatten
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     @group.update(group_params)

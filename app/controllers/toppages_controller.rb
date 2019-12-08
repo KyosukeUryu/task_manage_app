@@ -1,4 +1,3 @@
 class ToppagesController < ApplicationController
-  def tops
-  end
+  def tops; end
 end
