@@ -53,3 +53,9 @@ Metrics/MethodLength:
 
 Style/IfUnlessModifier:
   Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 120
