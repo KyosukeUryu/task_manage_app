@@ -1,7 +1,7 @@
 namespace :expired_announcement do
   task expired_task: :environment do
 
-    tasks = Task.where('deadline < ?', Time.zone.today + 7)
+    tasks = Task.where('deadline < ?', Time.zone.today + 7).where.not(status: 2)
     users = []
 
     tasks.each do |task|
