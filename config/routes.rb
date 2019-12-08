@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   resources :joins, only: %i[create destroy]
   resources :labels, only: %i[index new create]
 
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

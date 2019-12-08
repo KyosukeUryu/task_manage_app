@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 User.create!(
-  name: "admin",
-  email: "admin@hoge.com",
-  password: "password",
-  password_confirmation: "password",
+  name: 'admin',
+  email: 'admin@hoge.com',
+  password: 'password',
+  password_confirmation: 'password',
   admin: true
           )
 
@@ -11,8 +11,8 @@ User.create!(
   User.create!(
     name: "hoge#{i}",
     email: Faker::Internet.email,
-    password: "password",
-    password_confirmation: "password",
+    password: 'password',
+    password_confirmation: 'password',
     admin: false
             )
 
@@ -27,5 +27,5 @@ User.create!(
 end
 
 Label.create!(
-  name: "テスト中"
+  name: 'テスト中'
             )

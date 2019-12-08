@@ -19,8 +19,8 @@ RSpec.describe Task, type: :system do
       @task1 = FactoryBot.create(:task, user: @user)
       @task2 = FactoryBot.create(:second_task, user: @user)
       visit new_session_path
-      fill_in "session_email", with: 'hoge@example.com'
-      fill_in "session_password", with: 'password'
+      fill_in 'session_email', with: 'hoge@example.com'
+      fill_in 'session_password', with: 'password'
       click_on 'ログインする'
       visit tasks_path
     end
@@ -86,8 +86,8 @@ RSpec.describe Task, type: :system do
       @task1 = FactoryBot.create(:task, user: @user)
       @task2 = FactoryBot.create(:second_task, user: @user)
       visit new_session_path
-      fill_in "session_email", with: 'hoge@example.com'
-      fill_in "session_password", with: 'password'
+      fill_in 'session_email', with: 'hoge@example.com'
+      fill_in 'session_password', with: 'password'
       click_on 'ログインする'
     end
     context '必要項目を入力して、createボタンを押した場合' do
@@ -95,11 +95,11 @@ RSpec.describe Task, type: :system do
         visit new_task_path
         fill_in 'タスク名', with: 'hoge'
         fill_in 'タスク詳細', with: 'fuga'
-        select '2021', from: "task_deadline_1i"
-        select '7月', from: "task_deadline_2i"
-        select '13', from: "task_deadline_3i"
-        select '着手中', from: "task_status"
-        select '中', from: "優先順位"
+        select '2021', from: 'task_deadline_1i'
+        select '7月', from: 'task_deadline_2i'
+        select '13', from: 'task_deadline_3i'
+        select '着手中', from: 'task_status'
+        select '中', from: '優先順位'
         check 'testing'
         click_on '登録する'
         expect(page).to have_content 'hoge'
@@ -115,8 +115,8 @@ RSpec.describe Task, type: :system do
       @task1 = FactoryBot.create(:task, user: @user)
       @task2 = FactoryBot.create(:second_task, user: @user)
       visit new_session_path
-      fill_in "session_email", with: 'hoge@example.com'
-      fill_in "session_password", with: 'password'
+      fill_in 'session_email', with: 'hoge@example.com'
+      fill_in 'session_password', with: 'password'
       click_on 'ログインする'
     end
     context '任意のタスク詳細画面に遷移した場合' do

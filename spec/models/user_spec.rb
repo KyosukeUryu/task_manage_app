@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'emailが正規表現に反していたらバリデーションが通らない' do
-    user = User.new(name: 'sample', email: "hogefuga", password: 'password')
+    user = User.new(name: 'sample', email: 'hogefuga', password: 'password')
     expect(user).to be_invalid
   end
 
