@@ -23,7 +23,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-    redirect_to groups_path if @group.joins.find_by(user_id: current_user.id).blank?
+    if @group.joins.find_by(user_id: current_user.id).blank?
+      redirect_to groups_path
+    end
     @users = @group.users
     @tasks = []
     @users.each do |user|
@@ -55,8 +57,6 @@ class GroupsController < ApplicationController
   end
 
   def owner_only
-    if current_user.id != @group.owner_id
-      redirect_to groups_path
-    end
+    redirect_to groups_path if current_user.id != @group.owner_id
   end
 end
