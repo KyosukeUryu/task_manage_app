@@ -4,7 +4,7 @@ User.create!(
             password: "password",
             password_confirmation: "password",
             admin: true
-)
+          )
 
 
 10.times do |i|
@@ -14,7 +14,7 @@ User.create!(
               password: "password",
               password_confirmation: "password",
               admin: false
-  )
+            )
 
   Task.create!(
               name: "hoge#{i}",
@@ -23,10 +23,10 @@ User.create!(
               status: rand(0..2),
               priority: rand(0..2),
               user_id: User.find(i + 1).id
-  )
+            )
 
 end
 
 Label.create!(
               name: "テスト中"
-)
+            )
