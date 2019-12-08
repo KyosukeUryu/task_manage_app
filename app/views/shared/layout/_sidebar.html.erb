@@ -15,7 +15,5 @@
     <h3>期限切れ・期限間近のタスクはありません</h3>
   <% end %>
 <% else %>
-  <% for i in 1..10 do %>
-    <%= link_to "ログインボタン#{i}号", new_session_path, class: 'btn btn-primary' %>
-  <% end %>
+  <%= link_to "ログインボタン", new_session_path, class: 'btn btn-primary' %>
 <% end %>
