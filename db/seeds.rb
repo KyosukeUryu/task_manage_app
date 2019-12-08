@@ -6,7 +6,6 @@ User.create!(
             admin: true
           )
 
-
 10.times do |i|
   User.create!(
               name: "hoge#{i}",

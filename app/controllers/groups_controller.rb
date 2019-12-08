@@ -44,7 +44,6 @@ class GroupsController < ApplicationController
     redirect_to groups_path, notice: 'グループを削除しました'
   end
 
-
   private
 
   def group_params

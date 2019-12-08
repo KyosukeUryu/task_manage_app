@@ -10,7 +10,6 @@ namespace :expired_announcement do
 
     users.uniq!
 
-
     users.each do |user|
       AnnounceTaskMailer.announce_task_mail(user).deliver
     end
