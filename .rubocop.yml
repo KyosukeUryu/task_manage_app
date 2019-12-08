@@ -33,3 +33,23 @@ Bundler/OrderedGems:
 
 Lint/ShadowedException:
   Enabled: false
+
+BlockNesting:
+  Max: 10
+
+Metrics/AbcSize:
+  Max: 50
+
+Metrics/LineLength:
+  Max: 160
+  Exclude:
+    - "db/migrate/*.rb"
+
+Style/GuardClause:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+
+Style/IfUnlessModifier:
+  Enabled: false
