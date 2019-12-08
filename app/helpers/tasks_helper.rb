@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module TasksHelper
   def label_searching
     @label_id = Label.pluck(:id)
