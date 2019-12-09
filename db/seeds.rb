@@ -30,3 +30,16 @@ end
 Label.create!(
   name: 'テスト中'
 )
+
+3.times do |i|
+  Group.create!(
+    name: "test#{i}",
+    owner_id: User.find(i + 1).id
+  )
+
+  Join.create!(
+    group_id: i + 1,
+    user_id: i + 1
+  )
+
+end
