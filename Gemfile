@@ -46,4 +46,4 @@ gem 'faker'
 gem 'simple_calendar'
 gem 'chartkick'
 
-gem "bugsnag", "~> 6.12"
+gem 'bugsnag', '~> 6.12'
