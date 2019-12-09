@@ -33,7 +33,6 @@ jobs: # a collection of steps
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
-      - run: sudo yum --enablerepo=epel install nodejs
       - run: bundle exec rake db:create
       - run: bundle exec rake db:schema:load
 

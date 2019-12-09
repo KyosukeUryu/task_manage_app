@@ -18,6 +18,7 @@ gem 'enum_help'
 gem 'kaminari', '~> 0.17.0'
 gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'therubyracer'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
