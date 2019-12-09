@@ -79,10 +79,5 @@ class TasksController < ApplicationController
       end
     end
   end
-  # def integer_string?(str)
-  #   Integer(str)
-  #   true
-  # rescue ArgumentError
-  #   false
-  # end
+  
 end
