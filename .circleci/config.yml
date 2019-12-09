@@ -12,6 +12,10 @@ jobs: # a collection of steps
           POSTGRES_USER: root
           POSTGRES_DB: task_manage_app_test
     steps:
+      - run:
+            command: chromedriver
+            background: true
+            
       - checkout
 
       # Download and cache dependencies
