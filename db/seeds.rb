@@ -41,5 +41,4 @@ Label.create!(
     group_id: i + 1,
     user_id: i + 1
   )
-
 end
