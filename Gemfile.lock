@@ -50,6 +50,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
+    bugsnag (6.12.2)
+      concurrent-ruby (~> 1.0)
     builder (3.2.3)
     byebug (11.0.1)
     capybara (3.29.0)
@@ -253,6 +255,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
+  bugsnag (~> 6.12)
   byebug
   capybara (>= 2.15)
   chartkick
