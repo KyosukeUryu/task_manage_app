@@ -52,19 +52,3 @@ jobs: # a collection of steps
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-workflows:
-  version: 2
-  normal_build:
-    jobs:
-      - build
-  daily_build:
-    triggers:
-      - schedule:
-          cron: "30 10 * * *" # UTC15:00, 日本時間0:00
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - run:
-          command: bundle exec rake expired_announcement:expired_task
