@@ -2,7 +2,7 @@ version: 2 # use CircleCI 2.0
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
     docker: # run the steps with Docker
-      - image: circleci/ruby:2.6.5-stretch # ...with this image as the primary container; this is where all `steps` will run
+      - image: circleci/ruby:2.6.5-node-browsers # ...with this image as the primary container; this is where all `steps` will run
         environment: # environment variables for primary container
           PGHOST: 127.0.0.1
           RAILS_ENV: test
@@ -13,14 +13,6 @@ jobs: # a collection of steps
           POSTGRES_DB: task_manage_app_test
     steps:
       - checkout
-
-      - run:
-          name: Download Selenium
-          command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
-      - run:
-          name: Start Selenium
-          command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
-          background: true
 
       # Download and cache dependencies
       - restore_cache:
