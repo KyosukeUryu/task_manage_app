@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Task, type: :system do
@@ -18,8 +20,8 @@ RSpec.describe Task, type: :system do
       @task1 = FactoryBot.create(:task, user: @user)
       @task2 = FactoryBot.create(:second_task, user: @user)
       visit new_session_path
-      fill_in "session_email", with: 'hoge@example.com'
-      fill_in "session_password", with: 'password'
+      fill_in 'session_email', with: 'hoge@example.com'
+      fill_in 'session_password', with: 'password'
       click_on 'ログインする'
       visit tasks_path
     end
@@ -53,18 +55,17 @@ RSpec.describe Task, type: :system do
       it 'ソートに合わせて表示を変更する' do
         fill_in 'name_search', with: 'test_name'
         click_on '検索する'
-        expect(page).to have_content 'test_name'
-        expect(page).not_to have_content 'hoge'
+        expect(page).to have_selector '.task_row', text: 'test_name'
         fill_in 'name_search', with: 'hoge'
         select '未着手', from: '状態検索'
         click_on '検索する'
-        expect(page).to have_content 'hoge'
+        expect(page).to have_selector '.task_row', text: 'hoge'
         select '中', from: '優先度検索'
         click_on '検索する'
-        expect(page).to have_content 'test_name'
+        expect(page).to have_selector '.task_row', text: 'test_name'
         select 'testing', from: 'ラベル検索'
         click_on '検索する'
-        expect(page).to have_content 'test_name'
+        expect(page).to have_selector '.task_row', text: 'test_name'
       end
     end
 
@@ -86,8 +87,8 @@ RSpec.describe Task, type: :system do
       @task1 = FactoryBot.create(:task, user: @user)
       @task2 = FactoryBot.create(:second_task, user: @user)
       visit new_session_path
-      fill_in "session_email", with: 'hoge@example.com'
-      fill_in "session_password", with: 'password'
+      fill_in 'session_email', with: 'hoge@example.com'
+      fill_in 'session_password', with: 'password'
       click_on 'ログインする'
     end
     context '必要項目を入力して、createボタンを押した場合' do
@@ -95,11 +96,11 @@ RSpec.describe Task, type: :system do
         visit new_task_path
         fill_in 'タスク名', with: 'hoge'
         fill_in 'タスク詳細', with: 'fuga'
-        select '2021', from: "task_deadline_1i"
-        select '7月', from: "task_deadline_2i"
-        select '13', from: "task_deadline_3i"
-        select '着手中', from: "task_status"
-        select '中', from: "優先順位"
+        select '2021', from: 'task_deadline_1i'
+        select '7月', from: 'task_deadline_2i'
+        select '13', from: 'task_deadline_3i'
+        select '着手中', from: 'task_status'
+        select '中', from: '優先順位'
         check 'testing'
         click_on '登録する'
         expect(page).to have_content 'hoge'
@@ -115,15 +116,17 @@ RSpec.describe Task, type: :system do
       @task1 = FactoryBot.create(:task, user: @user)
       @task2 = FactoryBot.create(:second_task, user: @user)
       visit new_session_path
-      fill_in "session_email", with: 'hoge@example.com'
-      fill_in "session_password", with: 'password'
+      fill_in 'session_email', with: 'hoge@example.com'
+      fill_in 'session_password', with: 'password'
       click_on 'ログインする'
     end
     context '任意のタスク詳細画面に遷移した場合' do
       it '該当タスクの内容が表示されたページに遷移すること' do
-        click_on 'test_name'
-        expect(page).to have_content 'test_name'
-        expect(page).not_to have_content 'hoge'
+        within '.task_table' do
+          click_on 'test_name'
+        end
+        expect(page).to have_selector '.task_show_table', text: 'test_name'
+        expect(page).not_to have_selector '.task_show_table', text: 'hoge'
       end
     end
   end

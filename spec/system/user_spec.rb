@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :system do
@@ -21,8 +23,8 @@ RSpec.describe User, type: :system do
       @user = FactoryBot.create(:user)
       @user2 = FactoryBot.create(:other_user)
       visit new_session_path
-      fill_in "session_email", with: 'hoge@example.com'
-      fill_in "session_password", with: 'password'
+      fill_in 'session_email', with: 'hoge@example.com'
+      fill_in 'session_password', with: 'password'
       click_on 'ログインする'
     end
     context '「ユーザ詳細」をクリックした場合' do
@@ -46,8 +48,8 @@ RSpec.describe User, type: :system do
     end
     context '正しく入力された場合' do
       it 'ログインが完了しタスク一覧画面が表示される' do
-        fill_in "session_email", with: 'hoge@example.com'
-        fill_in "session_password", with: 'password'
+        fill_in 'session_email', with: 'hoge@example.com'
+        fill_in 'session_password', with: 'password'
         click_on 'ログインする'
         expect(page).to have_content 'ログインしました'
         expect(page).to have_content 'タスク一覧'
@@ -56,8 +58,8 @@ RSpec.describe User, type: :system do
 
     context '入力に誤りがあった場合' do
       it 'ログインに失敗しログイン画面に戻る' do
-        fill_in "session_email", with: 'exe@example.com'
-        fill_in "session_password", with: 'passwordpass'
+        fill_in 'session_email', with: 'exe@example.com'
+        fill_in 'session_password', with: 'passwordpass'
         click_on 'ログインする'
         expect(page).to have_content 'ログインに失敗しました'
         expect(page).to have_content 'ログイン画面'

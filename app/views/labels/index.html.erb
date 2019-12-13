@@ -1,0 +1,25 @@
+<h2>ラベル一覧</h2>
+
+<table>
+  <thead>
+    <th>ラベル名</th>
+    <th>作成者</th>
+  </thead>
+  <tbody>
+    <% @labels.each do |label| %>
+      <tr>
+        <td><%= label.name %></td>
+        <% if label.user.present? %>
+          <td><%= label.user.name %></td>
+        <% else %>
+          <td>None</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'ラベル作成', new_label_path, class: 'btn btn-success' %>
+<h3>ラベル使用率</h3>
+
+<%= pie_chart Labelling.joins(:label).group("labels.name").count %>

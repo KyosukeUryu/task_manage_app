@@ -26,6 +26,10 @@
       <th><%= f.label :password_confirmation %></th>
       <td><%= f.password_field :password_confirmation %></td>
     </tr>
+    <tr>
+      <th><%= f.label :image %></th>
+      <td><%= f.file_field :image %></td>
+    </tr>
   </table>
   <%= f.submit %>
 <% end %>

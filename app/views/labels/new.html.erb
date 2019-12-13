@@ -1,0 +1,15 @@
+<h2>ラベル作成フォーム</h2>
+<% if @label.errors.any? %>
+  <p><%= @label.errors.count %>件のエラーがあります。</p>
+  <ul>
+    <% @label.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= form_with(model: @label, local: true) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.submit %>
+<% end %>

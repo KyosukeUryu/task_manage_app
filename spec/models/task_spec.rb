@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'タスク管理機能', type: :model do
@@ -59,12 +61,11 @@ RSpec.describe 'タスク管理機能', type: :model do
 
   it 'status_searchで検索したstatusのタスクが検索される' do
     tasks = Task.status_search(1)
-    expect(tasks.last.status).to eq "着手中"
+    expect(tasks.last.status).to eq '着手中'
   end
 
   it 'priority_searchで検索したpriorityのタスクが検索される' do
     tasks = Task.priority_search(1)
-    expect(tasks.last.priority).to eq "中"
+    expect(tasks.last.priority).to eq '中'
   end
-
 end

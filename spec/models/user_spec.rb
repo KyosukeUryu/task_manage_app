@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
@@ -24,7 +26,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'emailが正規表現に反していたらバリデーションが通らない' do
-    user = User.new(name: 'sample', email: "hogefuga", password: 'password')
+    user = User.new(name: 'sample', email: 'hogefuga', password: 'password')
     expect(user).to be_invalid
   end
 
@@ -41,6 +43,6 @@ RSpec.describe User, type: :model do
   it '各要素が入力され、nameが４０文字以内、emailが２５５文字以内、passwordが６文字以上、かつ
   emailが正規表現の通り入力されればバリデーションを通過する' do
     user = User.new(name: 'sample', email: 'sample@hoge.com', password: 'passwo')
-    expect(user).to be_valid 
+    expect(user).to be_valid
   end
 end

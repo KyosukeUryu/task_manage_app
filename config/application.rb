@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -19,12 +21,12 @@ module TaskManageApp
     config.active_record.default_timezone = :local
     config.generators do |g|
       g.test_framework :rspec,
-                      model_specs: true,
-                      view_specs: false,
-                      helper_specs: false,
-                      routing_specs: false,
-                      controller_specs: false,
-                      request_specs: false
+                       model_specs: true,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       controller_specs: false,
+                       request_specs: false
     end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

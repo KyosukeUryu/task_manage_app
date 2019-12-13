@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe User, type: :system do
@@ -6,8 +8,8 @@ RSpec.describe User, type: :system do
     @user2 = FactoryBot.create(:other_user)
     @user3 = FactoryBot.create(:third_user)
     visit new_session_path
-    fill_in "session_email", with: 'hoge@example.com'
-    fill_in "session_password", with: 'password'
+    fill_in 'session_email', with: 'hoge@example.com'
+    fill_in 'session_password', with: 'password'
     click_on 'ログインする'
   end
 
